@@ -12,11 +12,24 @@ let produits = [
 ];
 
 // Routes
+
 // GET /produits
 // liste des produits
 app.get("/produits", (req, res) => {
     res.json(produits);
 })
+
+// POST /produits
+app.post("/produits", (req, res) => {
+    const newProduits = req.body;
+
+   if (!newProduits || !newProduits.id || !newProduits.name) {
+        return res.status(400).json({ message: 'Invalid produit data' });
+    }
+
+    produits.push(newProduits);
+    res.status(201).json(produits);
+});
 
 
 // Démarrage du serveur
