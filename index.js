@@ -31,10 +31,9 @@ app.post("/produits", (req, res) => {
     res.status(201).json(produits);
 });
 
-// PUT /produits:id => permet de mettre à jour un objet
-// j'ai viré le path: '/produits:id' et ça marche
-app.put('/produits', (req, res) => {
-    const id = parseInt(req.body.id, 10);
+// PUT /produits/:id => permet de mettre à jour un objet
+app.put('/produits/:id', (req, res) => {
+    const id = parseInt(req.params.id);
     //remplacé req.params.id par req.body.id car je ne comprenait pas comment utiliser params
     let produit = produits.find(p => p.id === id);
 
@@ -56,8 +55,8 @@ app.put('/produits', (req, res) => {
 });
 
 // DELETE /produits:id => supprimer un produit avec son id
-app.delete('/produits', (req, res) => {
-    const id = parseInt(req.body.id, 10);
+app.delete('/produits/:id', (req, res) => {
+    const id = parseInt(req.params.id);// j'ai viré le paramètre radix et tout fonctionne => merci Sacha !
     const produitIndex = produits.findIndex(p => p.id === id);
 
     if (produitIndex === -1) {
