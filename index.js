@@ -22,8 +22,9 @@ app.get("/produits", (req, res) => {
 // POST /produits => permet d'ajouter un élément dans un objet
 app.post("/produits", (req, res) => {
     const newProduits = req.body;
+    console.log(newProduits);
 
-   if (!newProduits || !newProduits.id || !newProduits.name) {
+   if (!newProduits || !newProduits.id || !newProduits.nom) {
         return res.status(400).json({ message: 'Invalid produit data' });
     }
 
